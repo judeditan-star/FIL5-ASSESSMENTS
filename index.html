@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino 5 | Aurora Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #00f2ea;
+            --secondary: #00ff87;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020617;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* The "Wow" Background - Animated Mesh Gradient */
+        .mesh-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(0, 242, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(0, 255, 135, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(2, 6, 23, 1) 0%, transparent 100%);
+        }
+
+        .aurora-sphere {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: move 25s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(360deg); }
+        }
+
+        /* Liquid Glass Styling */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(0, 242, 234, 0.2), transparent);
+            border-left: 3px solid var(--primary);
+            color: var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        h1, .syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 242, 234, 0.5);
+        }
+
+        .card-reveal {
+            animation: reveal 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="p-4 lg:p-12">
+
+    <div class="mesh-gradient"></div>
+    <div class="aurora-sphere"></div>
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Floating Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center gap-6 mb-16 animate-fade-in">
+            <div class="group cursor-pointer">
+                <p class="text-xs tracking-[0.4em] text-teal-400 font-bold mb-2 opacity-70 group-hover:opacity-100 transition-opacity uppercase">Guro: Bb. Jude Ditan</p>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter glow-text">MGA PAGTATAYA SA <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00f2ea] to-[#00ff87]">FILIPINO 5</span></h1>
+            </div>
+            
+            <div class="flex items-center gap-4 liquid-glass p-2 rounded-2xl">
+                <div class="px-6 py-2">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Akademikong Taon</p>
+                    <p class="text-sm font-semibold">2025-2026</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-teal-900/50 flex items-center justify-center border-2 border-teal-500/30 text-teal-400">
+                    <i class="fa-solid fa-calendar-days text-xl"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Sidebar Navigation -->
+            <aside class="lg:col-span-3">
+                <nav class="liquid-glass rounded-[2.5rem] p-8 sticky top-12 space-y-8">
+                    <div>
+                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-6 px-4">Nabigasyon</p>
+                        <div class="space-y-2">
+                            <button onclick="switchTab(1)" id="tab-1" class="nav-link active w-full flex items-center gap-4 py-4 px-4 rounded-xl text-sm font-bold group">
+                                <i class="fa-solid fa-compass group-hover:rotate-45 transition-transform"></i> Termino 1
+                            </button>
+                            <button onclick="switchTab(2)" id="tab-2" class="nav-link w-full flex items-center gap-4 py-4 px-4 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">
+                                <i class="fa-solid fa-bolt"></i> Termino 2
+                            </button>
+                            <button onclick="switchTab(3)" id="tab-3" class="nav-link w-full flex items-center gap-4 py-4 px-4 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">
+                                <i class="fa-solid fa-star"></i> Termino 3
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="lg:col-span-9">
+                <div class="flex items-end justify-between mb-10">
+                    <div class="space-y-1">
+                        <h2 id="tab-title" class="text-3xl font-bold syne tracking-tight">Mga Pagtataya - Termino 1</h2>
+                        <p class="text-slate-400 text-sm">Pumili ng dokumento upang buksan ang PDF.</p>
+                    </div>
+                    <div class="bg-white/5 p-1 rounded-xl flex">
+                        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-teal-500 text-white"><i class="fa-solid fa-grip"></i></button>
+                        <button class="w-10 h-10 flex items-center justify-center rounded-lg text-slate-500"><i class="fa-solid fa-list"></i></button>
+                    </div>
+                </div>
+
+                <div id="content-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Cards will be injected here with Tilt -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdf-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 lg:p-10 opacity-0 transition-opacity duration-300">
+        <div class="w-full h-full max-w-6xl liquid-glass rounded-[2rem] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300" id="pdf-modal-content">
+            <div class="p-5 bg-slate-900/80 border-b border-white/10 flex justify-between items-center">
+                <h3 id="modal-title" class="text-xl font-bold syne text-teal-400 tracking-wide">Loading...</h3>
+                <button onclick="closeModal()" class="text-white hover:text-red-400 transition-colors w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-grow bg-slate-800/50 relative">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-teal-500/50 -z-10">
+                    <i class="fa-solid fa-circle-notch fa-spin text-5xl mb-4"></i>
+                    <p class="font-bold tracking-widest uppercase text-sm">Binubuksan ang PDF...</p>
+                </div>
+                <iframe id="pdf-iframe" src="" class="w-full h-full border-none" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const assessments = {
+            1: [
+                { title: "Gawaing Pasulat 1", tag: "Pasulat", desc: "Pagtataya para sa unang bahagi ng Termino 1.", color: "#00f2ea", icon: "fa-pen-nib", url: "https://drive.google.com/file/d/1AlxoLCTvWhEz_ihaYrjXWx3HBAgAgNf4/preview" },
+                { title: "Gawaing Pasulat 2", tag: "Pasulat", desc: "Pagtataya para sa ikalawang bahagi ng Termino 1.", color: "#70ff00", icon: "fa-file-signature", url: "https://drive.google.com/file/d/1gnSPZ6K4Ku9o44cKZQXrGPTnHPiusZbw/preview" },
+                { title: "Gawaing Pasulat 3", tag: "Pasulat", desc: "Pagtataya para sa ikatlong bahagi ng Termino 1.", color: "#008cff", icon: "fa-file-lines", url: "https://drive.google.com/file/d/1aiEi2U6QU3VJF1BDNyMhjfaY8K_d0Lj3/preview" },
+                { title: "Pangwakas na Pagsusulit", tag: "Pagsusulit", desc: "Pangkalahatang pagsusulit para sa buong Termino 1.", color: "#ff00d9", icon: "fa-star", url: "https://drive.google.com/file/d/1Eq4AiPB6pYrmtY3oEg_uVmu37nX0WpvL/preview" }
+            ],
+            2: [
+                { title: "Gawaing Pasulat 1", tag: "Pasulat", desc: "Pagtataya para sa unang bahagi ng Termino 2.", color: "#00f2ea", icon: "fa-pen-nib", url: "https://drive.google.com/file/d/1lFV0yLq6RXjqLPzld-T8ZIj1QaWkBcWz/preview" },
+                { title: "Gawaing Pasulat 2", tag: "Pasulat", desc: "Pagtataya para sa ikalawang bahagi ng Termino 2.", color: "#70ff00", icon: "fa-file-signature", url: "https://drive.google.com/file/d/1G2Dy2GD9tpEVRI43z5s2qpSdUHXFwFH0/preview" },
+                { title: "Gawaing Pasulat 3", tag: "Pasulat", desc: "Pagtataya para sa ikatlong bahagi ng Termino 2.", color: "#008cff", icon: "fa-file-lines", url: "https://drive.google.com/file/d/1t_DuX4To2k5Rx32T3iBjjUMC-nNjdiOD/preview" },
+                { title: "Pangwakas na Pagsusulit", tag: "Pagsusulit", desc: "Pangkalahatang pagsusulit para sa buong Termino 2.", color: "#ff00d9", icon: "fa-star", url: "https://drive.google.com/file/d/1QKdKqn198uHllbZw62wopiNxIWVDhx26/preview" }
+            ],
+            3: [
+                { title: "Gawaing Pasulat 1", tag: "Pasulat", desc: "Pagtataya para sa unang bahagi ng Termino 3.", color: "#00f2ea", icon: "fa-pen-nib", url: "https://drive.google.com/file/d/1AqaRRo11Uxnw-uB5sD3FAEc--LtbceRV/preview" },
+                { title: "Gawaing Pasulat 2", tag: "Pasulat", desc: "Pagtataya para sa ikalawang bahagi ng Termino 3.", color: "#70ff00", icon: "fa-file-signature", url: "https://drive.google.com/file/d/1g2K0XrAHb13Ifemhv_XpMfvaDHSZBbLD/preview" },
+                { title: "Gawaing Pasulat 3", tag: "Pasulat", desc: "Pagtataya para sa ikatlong bahagi ng Termino 3.", color: "#008cff", icon: "fa-file-lines", url: "https://drive.google.com/file/d/1pZIVH0Amsh8ZEoZBbVAJRw-4N36QSjJW/preview" },
+                { title: "Pangwakas na Pagsusulit", tag: "Pagsusulit", desc: "Pangkalahatang pagsusulit para sa buong Termino 3.", color: "#ff00d9", icon: "fa-star", url: "https://drive.google.com/file/d/1pn44PWbwTbdmfFq27c2xhaSTolGqWRJy/preview" }
+            ]
+        };
+
+        function switchTab(id) {
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+            document.getElementById(`tab-${id}`).classList.add('active');
+
+            const container = document.getElementById('content-grid');
+            const tabTitle = document.getElementById('tab-title');
+            
+            tabTitle.innerText = `Mga Pagtataya - Termino ${id}`;
+            
+            container.innerHTML = '';
+            
+            assessments[id].forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'liquid-glass rounded-[2.5rem] p-8 flex flex-col group cursor-pointer card-reveal relative overflow-hidden';
+                card.setAttribute('data-tilt', '');
+                card.setAttribute('data-tilt-max', '10');
+                card.setAttribute('data-tilt-speed', '400');
+                card.setAttribute('data-tilt-glare', 'true');
+                card.setAttribute('data-tilt-max-glare', '0.1');
+                card.onclick = () => openModal(item.title, item.url);
+
+                card.innerHTML = `
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid ${item.icon} text-7xl" style="color: ${item.color}"></i>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-slate-300">
+                            ${item.tag}
+                        </span>
+                    </div>
+
+                    <h3 class="text-2xl font-bold syne leading-tight mb-4 group-hover:text-teal-400 transition-colors">${item.title}</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">${item.desc}</p>
+                    
+                    <div class="mt-auto flex items-center justify-between">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full border-2 border-[#020617] bg-teal-500 flex items-center justify-center text-[10px]"><i class="fa-solid fa-check"></i></div>
+                            <div class="w-8 h-8 rounded-full border-2 border-[#020617] bg-slate-800 flex items-center justify-center text-[10px] opacity-50"><i class="fa-solid fa-lock"></i></div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                            <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Re-initialize Tilt for new cards
+            VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
+        }
+
+        function openModal(title, url) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('pdf-iframe').src = url;
+            const modal = document.getElementById('pdf-modal');
+            const content = document.getElementById('pdf-modal-content');
+            modal.classList.remove('hidden');
+            // trigger reflow
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('pdf-modal');
+            const content = document.getElementById('pdf-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('pdf-iframe').src = '';
+            }, 300);
+        }
+
+        window.onload = () => switchTab(1);
+    </script>
+</body>
+</html>
